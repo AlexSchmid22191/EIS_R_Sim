@@ -9,5 +9,5 @@ Overpotentials are listed in V, oxygen partial pressures in bar, defect concentr
 Partial pressure and overpotential dependencies (p and n slopes) are given unitless and (/V), and likewise with resistances instead of currents (rp and rn slopes), respectively.
 
 Models described in the publication are 7, 8, 10 and 11:
-Model 7 describes a molecular mechanisms wothout adsorption limitation, model 8 includes adsorption limitation.
+Model 7 describes a molecular mechanisms without adsorption limitation, model 8 includes adsorption limitation.
 Likewise Models 10 and 11 describe atomic mechanisms without and with adsorption limitation, respectively.
