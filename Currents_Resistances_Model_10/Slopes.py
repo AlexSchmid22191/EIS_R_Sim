@@ -1,4 +1,4 @@
-from numpy import load, zeros, dtype, save, gradient, log, nan
+from numpy import load, zeros, dtype, save, gradient, log, nan, savetxt
 
 # Load shifted Brouwer diagram
 current_data = load('Current_Data_Model_10.npy')
@@ -22,3 +22,4 @@ slope_data['rp_slope'] = gradient(log(current_data['resistance']), log(current_d
 slope_data['rn_slope'] = gradient(log(current_data['resistance']), abs(current_data['overpotential'][:, 0]), axis=0)
 
 save('Slope_Data_Model_10.npy', slope_data)
+savetxt('../CSVs/Slope_Data_Model_10.csv', slope_data.flatten(), header=','.join(name for name in datatype.names), fmt='%5.4e')

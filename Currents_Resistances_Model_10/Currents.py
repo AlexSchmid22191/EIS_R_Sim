@@ -1,4 +1,4 @@
-from numpy import load, zeros, dtype, save, gradient
+from numpy import load, zeros, dtype, save, gradient, savetxt
 
 # Load shifted Brouwer diagram
 defect_data = load('../Brouwer/Brouwer_Bias.npy')
@@ -34,3 +34,4 @@ current_data['current'] = current_data['ex_current'] * ((ox/ox_eq)*(hole/hole_eq
 current_data['resistance'] = 1/gradient(current_data['current'], current_data['overpotential'][:, 0], axis=0)
 
 save('Current_Data_Model_10.npy', current_data)
+savetxt('../CSVs/Current_Data_Model_10.csv', current_data.flatten(), header=','.join(name for name in datatype.names), fmt='%5.4e')

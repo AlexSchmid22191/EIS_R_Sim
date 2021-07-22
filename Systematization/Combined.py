@@ -6,7 +6,7 @@ field = np.zeros(shape=(4**4*3*3, 7), dtype=int)
 
 q = 0
 
-# 4 times range(4): distribute 4 electronic charge carriers amon 4 "positions":
+# 4 times range(4): distribute 4 electronic charge carriers among 4 "positions":
 # anodic equilibrium, anodic rds, cathodic rsd, cathodic equilibrium
 
 # 2 times range(3): distribute 2 oxygen vacancies among 3 positions:
