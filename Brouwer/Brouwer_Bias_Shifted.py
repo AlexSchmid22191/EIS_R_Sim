@@ -1,9 +1,9 @@
-from numpy import zeros, logspace, linspace, dtype, meshgrid, save
+from numpy import zeros, logspace, linspace, dtype, meshgrid, savetxt, save
 from ASC_Solver import arbitrary_solver
 
 
-datatype = dtype({'names': ['pressure', 'overpotential', 'oxygenpot', 'vacancies', 'holes', 'electrons'],
-                 'formats': ['float64', 'float64', 'float64', 'float64', 'float64', 'float64']})
+datatype = dtype({'names': ['pressure', 'overpotential', 'vacancies', 'holes', 'electrons'],
+                 'formats': ['float64', 'float64', 'float64', 'float64', 'float64']})
 
 # Create Grid of overpotential and oxygen partial pressure
 shifted_defect_data = zeros(shape=(1201, 2401), dtype=datatype)
@@ -28,3 +28,4 @@ for eta_idx, eta in enumerate(shifted_defect_data):
         shifted_defect_data[eta_idx, p_idx]['electrons'] = result[2]
 
 save('Brouwer_Bias_Shifted.npy', shifted_defect_data)
+savetxt('../CSVs/Brouwer_Bias_Shifted.csv', shifted_defect_data.flatten(), header=','.join(name for name in datatype.names), fmt='%5.4e')

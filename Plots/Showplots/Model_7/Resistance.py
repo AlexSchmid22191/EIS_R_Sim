@@ -7,9 +7,9 @@ from matplotlib.ticker import SymmetricalLogLocator, LogLocator
 
 use('../Show.mplstyle')
 
-data = load('../../../Currents_Resistances_Model_7/Current_Data_Model_7.npy')
+data = load('../../../Currents_Resistances_Model_7/Slope_Data_Model_7.npy')
 
-abs_current_den = masked_equal(abs(data['current']), 0)
+#abs_current_den = masked_equal(abs(data['current']), 0)
 
 fig, ax = subplots(figsize=(6, 4))
 
@@ -17,8 +17,8 @@ ax.set_xscale('log')
 ax.set_xlabel('Oxygen partial pressure (bar)')
 ax.set_ylabel('Overpotential (V)')
 
-colmesh = ax.pcolormesh(data['pressure'], data['overpotential'], data['resistance'],
-                        norm=LogNorm(vmin=1e-12, vmax=1e16))
+colmesh = ax.pcolormesh(data['pressure'], data['overpotential'], data['rn_slope'], vmin=-30, vmax=30, shading='auto',
+                        cmap='seismic')
 
 cbar = fig.colorbar(colmesh, ax=ax, ticks=LogLocator(numticks=8), label='Resistance (a.u.)')
 cbar.ax.minorticks_off()

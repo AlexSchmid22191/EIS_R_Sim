@@ -1,7 +1,7 @@
 from matplotlib.colors import LogNorm
 from matplotlib.pyplot import subplots, show
 from matplotlib.style import use
-from numpy import load
+from numpy import load, gradient
 
 use('../Show.mplstyle')
 

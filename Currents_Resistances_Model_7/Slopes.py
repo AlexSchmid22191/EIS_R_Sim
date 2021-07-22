@@ -1,11 +1,11 @@
-from numpy import load, zeros, dtype, save, gradient, log, nan
+from numpy import load, zeros, dtype, savetxt, gradient, log, nan, save
 
 # Load shifted Brouwer diagram
 current_data = load('Current_Data_Model_7.npy')
 
 # Create array for slope data
-datatype = dtype({'names': ['pressure', 'overpotential', 'oxygenpot', 'p_slope', 'n_slope', 'rp_slope', 'rn_slope'],
-                 'formats': ['float64', 'float64', 'float64', 'float64', 'float64', 'float64', 'float64']})
+datatype = dtype({'names': ['pressure', 'overpotential', 'p_slope', 'n_slope', 'rp_slope', 'rn_slope'],
+                 'formats': ['float64', 'float64', 'float64', 'float64', 'float64', 'float64']})
 
 slope_data = zeros(shape=current_data.shape, dtype=datatype)
 
@@ -19,6 +19,7 @@ slope_data['p_slope'] = gradient(log(abs(current_data['current'])), log(current_
 slope_data['n_slope'] = gradient(log(abs(current_data['current'])), current_data['overpotential'][:, 0], axis=0)
 
 slope_data['rp_slope'] = gradient(log(current_data['resistance']), log(current_data['pressure'][0, :]), axis=1)
-slope_data['rn_slope'] = gradient(log(current_data['resistance']), abs(current_data['overpotential'][:, 0]), axis=0)
+slope_data['rn_slope'] = gradient(log(current_data['resistance']), current_data['overpotential'][:, 0], axis=0)
 
 save('Slope_Data_Model_7.npy', slope_data)
+savetxt('../CSVs/Slope_Data_Model_7.csv', slope_data.flatten(), header=','.join(name for name in datatype.names), fmt='%5.4e')
